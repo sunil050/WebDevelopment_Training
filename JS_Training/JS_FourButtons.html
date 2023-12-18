@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 3rem;
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        select {               
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .con {
+            width: 0;
+            height: 0;
+            /* border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 86.6px solid rgb(255, 0, 0);
+            margin: 50px; */
+        }
+
+        select:focus,
+        .con:hover {
+            outline: 2px solid #3498db;
+        }
+
+        select:hover,
+        select:focus {
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
+        }
+
+        .con:hover {
+            transform: scale(1.1);
+        }
+
+        .content {
+            width: 100%;
+            height: 20px; /* Adjust the height as needed or remove it */
+        }
+        /* .triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 86.6px solid #3498db;
+    } */
+    </style>
+</head>
+<body>
+    <h1>Four Selections</h1>
+    <container class="content">
+        <div class="con" id="con"></div>
+    </container>
+    <select id="shape">
+        <option value="">Shape option</option>
+        <option value="Square">Square</option>
+        <option value="circle">Circle</option>
+        <!-- <option value="triangle">Triangle</option> -->
+    </select>
+
+    <select id="size">
+        <option value="">Size option</option>
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+    </select>
+
+    <select id="color">
+        <option value="">Color option</option>
+        <option value="red">Red</option>
+        <option value="yellow">Yellow</option>
+        <option value="blue">Blue</option>
+    </select>
+
+    <select id="display">
+        
+        <option value="block">Block</option>
+        <option value="none">None</option>
+        
+    </select>
+
+    <script>
+        let difSize = document.getElementById("size");
+        difSize.addEventListener("change", sizeChange);
+
+        function sizeChange() {
+            if (difSize.value == "small") {
+                document.getElementById("con").style.width = "3rem";
+                document.getElementById("con").style.height = "3rem";
+            } else if (difSize.value == "large") {
+                document.getElementById("con").style.width = "12rem";
+                document.getElementById("con").style.height = "12rem";
+            } else if (difSize.value == "medium") {
+                document.getElementById("con").style.width = "6rem";
+                document.getElementById("con").style.height = "6rem";
+            }
+        }
+
+        let difshape = document.getElementById("shape");
+        difshape.addEventListener("change", shapeChange);
+
+        function shapeChange() {
+            let conElement = document.getElementById("con");
+
+            if (difshape.value == "circle") {
+                conElement.style.borderRadius = "50%";
+
+                conElement.classList.remove('con');
+
+            } else if (difshape.value == "Square") {
+                conElement.style.borderRadius = "0px";
+
+                conElement.classList.remove('con');
+            } 
+            // else if (difshape.value == "triangle") {
+            //     conElement.classList.add('con');
+            // }
+        }
+
+        let diffcolor = document.getElementById("color");
+        diffcolor.addEventListener("change", handleClick);
+
+        function handleClick() {
+            if (diffcolor.value == "red") {
+                document.getElementById("con").style.backgroundColor = "red";
+            } else if (diffcolor.value == "yellow") {
+                document.getElementById("con").style.backgroundColor = "yellow";
+            } else if (diffcolor.value == "blue") {
+                document.getElementById("con").style.backgroundColor = "blue";
+            }
+        }
+
+        let displaySelect = document.getElementById("display");
+        displaySelect.addEventListener("change", handleDisplayChange);
+
+        function handleDisplayChange() {
+            document.getElementById("con").style.display = displaySelect.value;
+        }
+        
+    </script>
+</body>
+</html>
+
